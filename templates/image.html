@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H0NW5Z2MYC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H0NW5Z2MYC');
+  </script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Traffic signs recognition</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../static/img/logo2.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../static/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Regna - v2.1.0
+  * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <style>
+  
+    canvas {
+      display: hidden !important;
+    }
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    .container .wrapper{
+      position: relative;
+      height: 350px;
+      width: 360px;
+      border-radius: 10px;
+      background: #fff;
+      border: 2px dashed #c2cdda;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+    .wrapper.active{
+      border: none;
+    }
+    .wrapper .image{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    .wrapper .icon{
+      font-size: 100px;
+      color: #9658fe;
+    }
+    .wrapper .text{
+      font-size: 20px;
+      font-weight: 500;
+      color: #5B5B7B;
+    }
+    .wrapper #cancel-btn i{
+      position: absolute;
+      font-size: 20px;
+      right: 15px;
+      top: 15px;
+      color: #9658fe;
+      cursor: pointer;
+      display: none;
+    }
+    .wrapper.active:hover #cancel-btn i{
+      display: block;
+    }
+    .wrapper #cancel-btn i:hover{
+      color: #e74c3c;
+    }
+    .wrapper .file-name{
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      padding: 8px 0;
+      font-size: 18px;
+      color: #fff;
+      display: none;
+      background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+    }
+    .wrapper.active:hover .file-name{
+      display: block;
+    }
+    .container #custom-btn{
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+      width: 50%; 
+      display: block; 
+      margin-left: auto; 
+      margin-right: auto; 
+      width: 40%;
+    }
+    .container #predict{
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+      width: 50%; 
+      display: block; 
+      margin-left: auto; 
+      margin-right: auto; 
+      width: 40%;
+    }
+    .container #details{
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+      width: 50%; 
+      display: block; 
+      margin-left: auto; 
+      margin-right: auto; 
+      width: 40%;
+    }
+    #result {
+      width: 40%;
+      height: auto;
+      background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+      margin-left: auto; 
+      margin-right: auto; 
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 10px;
+      list-style: none;
+      text-align: left;
+    }
+  </style>
+  <meta charset="utf-8">
+  <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+  <!-- <title>Preview Image Before Upload | CodingNepal</title> -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.7.0/dist/tf.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script> -->
+  
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header-transparent">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="/"><h1 style = "font-family:courier,arial,helvetica;color:white;">TRAFFIC SIGNS</h1></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="/">Home</a></li>
+          <li><a href="#about">About App</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- End Header -->
+
+
+  
+  <div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+    Loadding Model
+  </div>
+ 
+  <!-- ======= Hero Section ======= -->
+  <div id="hero">
+    <div id="hero2" class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <div id="paint">
+        <canvas id="myCanvas"></canvas>
+      </div>  
+      <br>
+      <div class="container" style="width: 60%;" id="lop">
+        <div class="wrapper">
+          <div class="image">
+            <img src="" alt="" id="omg" style="display: none;">
+          </div>
+          <div class="content">
+            <div class="icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="text">No file chosen, yet!</div>
+          </div>
+          <div id="cancel-btn"><i class="fas fa-times"></i></div>
+          <div class="file-name">File name here</div>
+        </div>
+        <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+        <button id="predict" >Predict</button>
+        <input id="default-btn" type="file" hidden>
+        <h1 style="color: thistle;" id="text">PREDICT</h1>
+        <br>
+        <ul id="result" style="color: white"></ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../static/vendor/php-email-form/validate.js"></script>
+  <script src="../static/vendor/counterup/counterup.min.js"></script>
+  <script src="../static/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../static/vendor/superfish/superfish.min.js"></script>
+  <script src="../static/vendor/hoverIntent/hoverIntent.js"></script>
+  <script src="../static/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../static/vendor/venobox/venobox.min.js"></script>
+  <script src="../static/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/js/main.js"></script>
+  <script>
+
+    var IMAGENET_CLASSES = { 1:'Giới hạn tốc độ (20km/h)',
+            2:'Giới hạn tốc độ (30km/h)',      
+            3:'Giới hạn tốc độ (50km/h)',       
+            4:'Giới hạn tốc độ (60km/h)',      
+            5:'Giới hạn tốc độ (70km/h)',    
+            6:'Giới hạn tốc độ (80km/h)',      
+            7:'Hết giới hạn tốc độ (80km/h)',     
+            8:'Giới hạn tốc độ (100km/h)',    
+            9:'Giới hạn tốc độ (120km/h)',     
+           10:'Cấm vượt',   
+           11:'Cấm xe tải vượt',     
+           12:'Quyền ưu tiên tại giao lộ',     
+           13:'Đường ưu tiên',    
+           14:'Nhường đường',     
+           15:'Dừng lại',       
+           16:'Đường cấm',       
+           17:'Cấm xe tải',       
+           18:'Cấm đi ngược chiều',       
+           19:'Cảnh báo nguy hiểm',     
+           20:'Đường cong nguy hiểm bên trái',      
+           21:'Đường cong nguy hiểm bên phải',   
+           22:'Đường cong nguy hiểm',      
+           23:'Đường gập ghềnh',     
+           24:'Đường trơn trượt',       
+           25:'Đường hẹp ở bên phải',  
+           26:'Công trường',    
+           27:'Tín hiệu giao thông',      
+           28:'Đường dành cho người đi bộ',     
+           29:'Trẻ em băng qua',     
+           30:'Người đi xe đạp cắt ngang',       
+           31:'Cẩn thận băng tuyết',
+           32:'Động vật hoang dã băng qua',      
+           33:'Giới hạn tốc độ kết thúc + giới hạn vượt',      
+           34:'Các xe chỉ được rẽ phải',     
+           35:'Các xe chỉ được rẽ trái',       
+           36:'Các xe chỉ được đi thẳng',      
+           37:'Các xe chỉ được đi thẳng và rẽ phải',      
+           38:'Các xe chỉ được đi thẳng và rẽ trái',      
+           39:'Hướng di động chướng ngại vật sang phải',     
+           40:'Hướng di động chướng ngại vật sang trái',      
+           41:'Nơi giao nhau chạy theo vòng xuyến',     
+           42:'Hết cấm vượt',      
+           43:'Hết cấm vượt xe tải' }
+
+    $('#paint').hide()
+    $('#result').hide()
+    $('#text').hide()
+    $('#predict').hide()
+    $('#details').hide()
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+
+
+    var compuetedStyle = getComputedStyle(document.getElementById('paint'));
+    canvas.width = parseInt(compuetedStyle.getPropertyValue('width'));
+    canvas.height = parseInt(compuetedStyle.getPropertyValue('height'));
+
+    const wrapper = document.querySelector(".wrapper");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#default-btn");
+    const customBtn = document.querySelector("#custom-btn");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("img");
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+    function defaultBtnActive(){
+      $('#result').hide()
+      defaultBtn.click();
+    }
+    defaultBtn.addEventListener("change", function(){
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      const file = this.files[0];
+      if(file){
+        $("#custom-btn").hide()
+        $("#predict").show()
+        document.getElementById("omg").setAttribute("style", "display: block;")
+        const reader = new FileReader();
+        reader.onload = function(){
+          const result = reader.result;
+          img.src = result;
+          wrapper.classList.add("active");
+        }
+        cancelBtn.addEventListener("click", function(){
+          $("#custom-btn").show()
+          $("#result").hide()
+          $("#text").hide()
+          $("#predict").hide()
+          img.src = "";
+          wrapper.classList.remove("active");
+          document.getElementById("omg").setAttribute("style", "display: none;")
+        })
+        reader.readAsDataURL(file);
+      }
+      if(this.value){
+        let valueStore = this.value.match(regExp);
+        fileName.textContent = valueStore;
+      }
+    }, false);
+    
+
+    let model;
+    (async function() {
+      model = await tf.loadLayersModel('static/model/add/model.json');
+      setTimeout(function(){$('.progress-bar').hide()}, 2000);
+    })();
+
+    $('#predict').click(async function () {
+      let input = $('#omg').get(0);
+      let tensor = tf.browser.fromPixels(input)
+        .resizeNearestNeighbor([30,30])
+        .toFloat()
+        .expandDims();
+      
+      // let meanImageNetRGB = {
+      //   red: 123.68,
+      //   green: 116.779,
+      //   blue: 103.939
+      // }
+      
+      // let indices = [
+      //   tf.tensor1d([0], "int32"),
+      //   tf.tensor1d([1], "int32"),
+      //   tf.tensor1d([2], "int32")
+      // ]
+
+
+      // let centeredRGB = {
+      //   red: tf.gather(tensor, indices[0], 2)
+      //     .sub(tf.scalar(meanImageNetRGB.red))
+      //     .reshape([50176]),
+      //   green: tf.gather(tensor, indices[1], 2)
+      //     .sub(tf.scalar(meanImageNetRGB.green))
+      //     .reshape([50176]),
+      //   red: tf.gather(tensor, indices[2], 2)
+      //     .sub(tf.scalar(meanImageNetRGB.blue))
+      //     .reshape([50176]),
+      // }
+
+      // let processedTensor = tf.stack([centeredRGB.red, centeredRGB.green, centeredRGB.blue], 1)
+      //   .reshape([30, 30, 3])
+      //   .reverse(2)
+      //   .expandDims();
+
+      let predictions = await model.predict(tensor).data();
+      let top5 = Array.from(predictions)
+        .map(function (p, i){
+          return {
+            probability: p,
+            className: IMAGENET_CLASSES[i+1]
+          };
+        }).sort(function (a, b) {
+          return b.probability - a.probability;         
+        }).slice(0, 5);
+      
+      $('#result').html(``)
+      top5.forEach(function (p) {
+        console.log(p.className + ':' + p.probability.toFixed(4))
+        $('#result').show()
+        $('#result').append(`<li>${p.className}: ${p.probability.toFixed(4)*100}%</li>`)
+        $('#predict').hide()
+        $('#custom-btn').show()
+      });
+    });
+  </script>
+</body>
+</html>
